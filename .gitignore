@@ -8,6 +8,9 @@
 # testing
 /coverage
 
+# Private
+/src/private
+
 # production
 /build
 
