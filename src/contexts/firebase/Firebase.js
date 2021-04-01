@@ -10,6 +10,8 @@ import "firebase/analytics";
 // Add the Firebase products that you want to use
 import "firebase/auth";
 import "firebase/firestore";
+// import {firebaseui} from 'firebaseui';
+
 
 export const FirebaseContext = React.createContext()
 
@@ -31,6 +33,9 @@ export default class Firebase extends React.Component {
         }
 
         this.googleProvider = new firebase.auth.GoogleAuthProvider();
+        // TODO: set up firebase auth UI
+        // this.ui = new firebaseui.auth.AuthUI(firebase.auth())
+
 
     }
     // ------------------------------------ Firebase Methods --------------------------------------

@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Store() {
     const classes = useStyles()
-    return <Container className={classes.root}>
+    return <Container className={classes.root} component="main" maxWidth="md">
         <AppContainer title="Atlas Query Processor" price="$24.99">
             ies integer quis. Cursus euismod quis viverra nibh cras.
             Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
@@ -25,6 +25,7 @@ export default function Store() {
             arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
             donec massa sapien faucibus et molestie ac.
         </AppContainer>
+        <br/>
         <AppContainer title="Atlas Query Processor" price="$24.99">
             ies integer quis. Cursus euismod quis viverra nibh cras.
             Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
@@ -32,6 +33,7 @@ export default function Store() {
             arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
             donec massa sapien faucibus et molestie ac.
         </AppContainer>
+        <br/>
         <AppContainer title="Atlas Query Processor" price="$24.99">
             ies integer quis. Cursus euismod quis viverra nibh cras.
             Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis

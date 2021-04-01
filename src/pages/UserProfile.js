@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 export default function UserProfile() {
     const classes = useStyles();
     return <div className={classes.root}>
-        <Container>
+        <Container component="main" maxWidth="md">
             <br />
             <Grid container spacing={3}>
                 <Grid className={classes.paper} item xs={12} md={3}>

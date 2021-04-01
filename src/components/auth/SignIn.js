@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import Oauth from './Oauth';
 
 function Copyright() {
   return (
@@ -86,6 +87,7 @@ export default function SignIn() {
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
+          <Oauth/>
           <Button
             type="submit"
             fullWidth
@@ -114,4 +116,4 @@ export default function SignIn() {
       </Box>
     </Container>
   );
-}
+} 
