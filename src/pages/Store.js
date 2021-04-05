@@ -1,55 +1,45 @@
 import { Container, Grid, Typography } from '@material-ui/core'
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
+import { Switch, useRouteMatch, Route } from 'react-router-dom'
+import AppDetail from './AppDetail'
 
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
     },
-    app_container:{
-        padding:"1rem",
+    app_container: {
+        padding: "1rem",
     },
-    price:{
-        textAlign:"right"
+    price: {
+        textAlign: "right"
     }
-    
+
 }));
 
 export default function Store() {
     const classes = useStyles()
-    return <Container className={classes.root} component="main" maxWidth="md">
-        <AppContainer title="Atlas Query Processor" price="$24.99">
-            ies integer quis. Cursus euismod quis viverra nibh cras.
-            Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
-            imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
-            arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
-            donec massa sapien faucibus et molestie ac.
-        </AppContainer>
-        <br/>
-        <AppContainer title="Atlas Query Processor" price="$24.99">
-            ies integer quis. Cursus euismod quis viverra nibh cras.
-            Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
-            imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
-            arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
-            donec massa sapien faucibus et molestie ac.
-        </AppContainer>
-        <br/>
-        <AppContainer title="Atlas Query Processor" price="$24.99">
-            ies integer quis. Cursus euismod quis viverra nibh cras.
-            Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
-            imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
-            arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
-            donec massa sapien faucibus et molestie ac.
-        </AppContainer>
+    const match = useRouteMatch()
+    return <Container>
+        <Switch>
+            <Route path={`${match.path}/id`}>
+                <AppDetail />
+            </Route>
+            <Route path={match.path}>
+                <AppDetail />
+            </Route>
+        </Switch>
     </Container>
+
+
 }
 
 
 function AppContainer(props) {
     const classes = useStyles()
-    return <Grid item xs={12} style={{ backgroundColor: 'lightgray' } }className={classes.app_container}>
+    return <Grid item xs={12} style={{ backgroundColor: 'lightgray' }} className={classes.app_container}>
         <Typography variant="h5">Atlas Query Processor</Typography>
-        <br/>
+        <br />
         <Typography paragraph>
             {props.children}
         </Typography>

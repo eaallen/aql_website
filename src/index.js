@@ -3,11 +3,27 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {Firebase} from "./contexts/firebase";
+import { Firebase } from "./contexts/firebase";
+
+import firebase from "firebase/app";
+import { FIREBASE_CONFIG } from './private/firebase'
+
+import "firebase/analytics";
+import "firebase/auth";
+import "firebase/firestore";
+
+// initalize firebase 
+// from https://stackoverflow.com/questions/43331011/firebase-app-named-default-already-exists-app-duplicate-app
+if (!firebase.apps.length) {
+  console.info('Initalized Firebase App at index.js')
+  firebase.initializeApp(FIREBASE_CONFIG);
+} else {
+  firebase.app(); // if already initialized, use that one
+}
 
 ReactDOM.render(
   <React.StrictMode>
-    <Firebase>
+    <Firebase firebase={firebase}>
       <App />
     </Firebase>
   </React.StrictMode>,
