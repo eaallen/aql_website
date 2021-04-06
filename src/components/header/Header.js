@@ -47,7 +47,7 @@ export default function Header() {
                 TLC Tech
             </Typography>
             <Tabs
-                variant="fullWidth"
+                variant="scrollable"
                 value={value}
                 onChange={handleChange}
                 aria-label="nav tabs example"
