@@ -11,7 +11,7 @@ import { FIREBASE_CONFIG } from './private/firebase'
 import "firebase/analytics";
 import "firebase/auth";
 import "firebase/firestore";
-import { MaterialContext } from './contexts/material/Material';
+// import Material from './contexts/material/Material';
 
 // initalize firebase 
 // from https://stackoverflow.com/questions/43331011/firebase-app-named-default-already-exists-app-duplicate-app
@@ -25,9 +25,7 @@ if (!firebase.apps.length) {
 ReactDOM.render(
   <React.StrictMode>
     <Firebase firebase={firebase}>
-      <MaterialContext>
-        <App />
-      </MaterialContext>
+      <App />
     </Firebase>
   </React.StrictMode>,
   document.getElementById('root')
