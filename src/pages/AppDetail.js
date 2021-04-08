@@ -1,6 +1,7 @@
 import {Container, Grid, makeStyles, Paper, Typography, } from '@material-ui/core'
 import React from 'react'
 import NavTabs from '../components/InfoArea/InfoArea'
+import Pricing from '../components/testing/Pricing'
 const title = 'Atlas Query Processor'
 // const name = 'atlas_query_processor'
 const nick_name = 'Quigly'
@@ -36,7 +37,7 @@ const platform = ['Excel']
 // const info = 'Cursus euismod quis viverra nibh cras.Metus vulputate eu scelerisque felis imperdiet proin fermentum leo.Mauris commodo quis imperdiet massa tincidunt.Cras tincidunt lobortis feugiat vivamus at augue.At augue eget arcu dictum varius duis at consectetur lorem.Velit sed ullamcorper morbi tincidunt.Lorem donec massa sapien faucibus et molestie ac.'
 
 const PricingInfo = ()=>(<>
-    
+
 </>)
 
 // const external_link = 'https://appsource.microsoft.com/en-us/product/office/wa200001383?tab=overview'
@@ -65,7 +66,7 @@ export default function AppDetail(props) {
     ]
     const panels = [
         { data: <FullDescription /> },
-        { data: description },
+        { data: <Pricing/> },
         { data: description },
     ]
     return <div className={classes.root}>

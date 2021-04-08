@@ -15,7 +15,9 @@ import ClippedDrawer from './pages/Testing'
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
-
+import Footer from './components/footer/Footer';
+import * as ROUTE from './private/routes'
+import Pay from './pages/Pay';
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -52,27 +54,31 @@ function App() {
         <main className={classes.content}>
           <Toolbar />
           <Switch>
-            <Route path="/about">
+            <Route path={ROUTE.ABOUT}>
               <About />
             </Route>
-            <Route path="/user">
+            <Route path={ROUTE.USER}>
               <UserProfile />
             </Route>
-            <Route path="/store">
+            <Route path={ROUTE.STORE}>
               <Store />
             </Route>
-            <Route path="/auth">
+            <Route path={ROUTE.AUTH}>
               <Auth />
             </Route>
-            <Route path="/test">
+            <Route path={ROUTE.PAY}>
+              <Pay/>
+            </Route>
+            <Route path={ROUTE.TEST}>
               <ClippedDrawer />
             </Route>
-            <Route path="/">
+            <Route path={ROUTE.HOME}>
               <Home />
             </Route>
           </Switch>
         </main>
       </div>
+      <Footer/>
     </Router>
   );
 }
