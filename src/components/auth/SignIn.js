@@ -12,9 +12,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Oauth from './Oauth';
-import { PAY } from '../../private/routes';
 import RouterLink from '../link/RouterLink';
 import { useRouteMatch } from 'react-router-dom';
+import RouterUtil from '../../utils/RouterUtil';
 const useStyles = makeStyles((theme) => ({
   paper: {
     display: 'flex',
@@ -92,7 +92,7 @@ export default function SignIn(props) {
               </Link>
             </Grid>
             <Grid item>
-              <RouterLink styled_link href={match.path}>
+              <RouterLink styled_link route href={RouterUtil.parsePath(match.path).parent}>
                 Don't have an account? Sign Up
               </RouterLink>
             </Grid>

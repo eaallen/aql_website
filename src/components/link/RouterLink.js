@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 export default function RouterLink(props) {
 	const classes = useStyles()
 	// see if the props.href is a valid route
-	if (Object.values(ROUTE).find(x => props.href === x) !== undefined) {
+	if (props.route || Object.values(ROUTE).find(x => props.href === x) !== undefined) {
 		if (props.styled_link) {
 			return <Link className='default_link' to={props.href}>{props.children}</Link>
 		}

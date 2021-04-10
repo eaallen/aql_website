@@ -99,7 +99,7 @@ export default function SignIn(props) {
           </Button>
           <Grid container>
             <Grid item>
-              <RouterLink styled_link href={`${match.path}${SIGN_IN}`}>
+              <RouterLink styled_link route href={`${match.path}${SIGN_IN}`}>
                 Have an account? Sign In
               </RouterLink>
             </Grid>

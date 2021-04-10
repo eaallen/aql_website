@@ -1,4 +1,5 @@
 import React from 'react'
+import ApplicationsCollection from '../../private/data/collection/ApplicationsCollection'
 import User from '../../private/data/User'
 
 export const FirebaseContext = React.createContext()
@@ -12,13 +13,15 @@ export default class Firebase extends React.Component {
             googleAuth: this.googleAuth
         }
         this.state = {
+            apps: null, // arr of apps for sell
+            component_mounted: false,
         }
 
         this.googleProvider = new this.firebase.auth.GoogleAuthProvider();
         // TODO: set up firebase auth UI
         // this.ui = new firebaseui.auth.AuthUI(firebase.auth())
 
-
+        this.applicationsCollection = new ApplicationsCollection()
     }
     // ------------------------------------ Firebase Methods --------------------------------------
 
@@ -52,10 +55,11 @@ export default class Firebase extends React.Component {
 
     // ------------------------------------- Render Method ----------------------------------------
     componentDidCatch() { }
-    componentDidMount() {
-        // connect to database 
+    componentDidMount = async () => {
+       
     }
     render() {
+
         return (
             <FirebaseContext.Provider value={{ ...this.state, ...this.actions }}>
                 {this.props.children}
