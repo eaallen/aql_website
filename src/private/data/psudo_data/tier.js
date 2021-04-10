@@ -2,6 +2,7 @@ const tiers = [
     {
         title: 'Demo',
         price: '0',
+        currency:'usd',
         description: [
             'connection to demo database',
             'query up to 100 rows',
@@ -16,6 +17,7 @@ const tiers = [
         featured: true,
         subheader: 'Most popular',
         price: '25',
+        currency:'usd',
         description: [
             '20 SQL lesson',
             '100+ practice problems',
@@ -29,6 +31,7 @@ const tiers = [
     {
         title: 'University',
         price: '10,000',
+        currency:'usd',
         rate: 'semester',
         description: [
             'Register 500 students per account',
