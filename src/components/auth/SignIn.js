@@ -12,7 +12,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Oauth from './Oauth';
-
+import { PAY } from '../../private/routes';
+import RouterLink from '../link/RouterLink';
+import { useRouteMatch } from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
   paper: {
     display: 'flex',
@@ -32,8 +34,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn() {
+export default function SignIn(props) {
   const classes = useStyles();
+  const match = useRouteMatch()
 
   return (
     <Container component="main" maxWidth="xs">
@@ -72,7 +75,7 @@ export default function SignIn() {
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
-          <Oauth/>
+          <Oauth />
           <Button
             type="submit"
             fullWidth
@@ -89,14 +92,14 @@ export default function SignIn() {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
+              <RouterLink styled_link href={match.path}>
+                Don't have an account? Sign Up
+              </RouterLink>
             </Grid>
           </Grid>
         </form>
       </div>
-      
+
     </Container>
   );
-} 
+}

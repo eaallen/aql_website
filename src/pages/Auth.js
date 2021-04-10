@@ -1,19 +1,10 @@
 import { Container } from '@material-ui/core'
 import React from 'react'
-import {SignIn, SignUp} from '../components/auth'
-import { Switch, useRouteMatch, Route } from 'react-router-dom'
+import AuthSwitch from '../components/auth'
 
 export default function Auth() {
-    const match = useRouteMatch()
     return <Container>
-        <Switch>
-            <Route path={`${match.path}/sign_in`}>
-                <SignIn />
-            </Route>
-            <Route path={match.path}>
-                <SignUp />
-            </Route>
-        </Switch>
+       <AuthSwitch/>
     </Container>
 }
 

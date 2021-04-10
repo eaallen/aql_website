@@ -9,7 +9,7 @@
 /coverage
 
 # Private
-/src/private
+/src/private/*.js
 
 # production
 /build

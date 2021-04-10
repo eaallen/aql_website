@@ -22,6 +22,14 @@ if (!firebase.apps.length) {
   firebase.app(); // if already initialized, use that one
 }
 
+// var auth = firebase.auth();
+// auth.useEmulator("http://localhost:9099");
+
+// var db = firebase.firestore();
+// if (window.location.hostname === "localhost") {
+//   db.useEmulator("localhost", 8080);
+// }
+
 ReactDOM.render(
   <React.StrictMode>
     <Firebase firebase={firebase}>
