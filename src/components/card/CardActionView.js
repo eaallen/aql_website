@@ -1,6 +1,6 @@
 import { Button, CardActions } from '@material-ui/core'
 import React from 'react'
-import RouterLink from '../link/RouterLink'
+import RouterLink from '../react_router/RouterLink'
 
 export default function CardActionView(props) {
   return <CardActions>
