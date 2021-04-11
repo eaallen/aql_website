@@ -4,7 +4,7 @@ class User extends FirestoreDoc {
 	constructor(user_data) {
 		super()
 		// if user is authenticated, we can continue set up
-		if (user_data) { 
+		if (user_data) {
 			this.account = user_data
 			this.data = { applications: [], groups: [] }
 			this.COLLECTION = 'users'
@@ -36,7 +36,7 @@ class User extends FirestoreDoc {
 
 	_asyncUserDataOrCreate = async (data) => {
 		const user_info = await this.genFromID(data.uid)
-		
+
 		// is the user info sotred in our db?
 		if (user_info) {
 			//set user data
@@ -79,7 +79,7 @@ class User extends FirestoreDoc {
 	_getChargesPath = () => {
 		return this.db
 			.collection(this.COLLECTION)
-			.doc(this.id)
+			.doc(this.account.uid)
 			.collection('charges')
 	}
 
@@ -89,14 +89,25 @@ class User extends FirestoreDoc {
 	 */
 	asyncGetCharges = async () => {
 		// get charges
-		// const charge_ref = await this._getChargesPath().get()
-		// const charges = charge_ref.data()
-		// for (const line of charges.line_items) {
-		//     // use promise.all here instead of awaiting every one
-		//     // charges.line_items = await line.get()
-		//     // charges.line_items = line.data()
-		// }
-		return
+		const charge_snapshot = await this._getChargesPath().get()
+		const arr_charges = []
+
+		charge_snapshot.forEach(x => {
+			arr_charges.push({ id: x.id, ...x.data() })
+		})
+
+		// should be using promise.all but im to tired 
+		const arr_data = []
+		for (const charge of arr_charges) {
+			const app = await charge.application.get()
+			arr_data.push({
+				time: charge.timestamp.toDate(),
+				...app.data()
+			})
+		}
+
+
+		return arr_data
 	}
 
 	/**

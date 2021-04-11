@@ -50,3 +50,9 @@
 .default_link:hover{
   text-decoration: underline;
 }
+
+.disabled-form{
+  opacity: 0.5 ;
+  color:red ;
+  margin: 500px ;
+}

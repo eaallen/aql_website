@@ -18,7 +18,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Footer from './components/footer/Footer';
 import * as ROUTE from './private/routes'
 import Pay from './pages/Pay';
-import { FirebaseContext } from './contexts/firebase/Firebase';
 import PrivateRoute from './components/react_router/PrivateRoute';
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -46,7 +45,6 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   const classes = useStyles()
-  const { user } = React.useContext(FirebaseContext)
   return (
     <Router>
       <div className={classes.root}>

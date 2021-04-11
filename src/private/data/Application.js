@@ -5,7 +5,7 @@ export default class Application extends FirestoreDoc {
 		app_name: '',
 		tier: 'free'
 	}
-	COLLECTION = 'application'
+	COLLECTION = 'applications'
 
 	_getPath = () => {
 		return this.db.collection(this.COLLECTION)

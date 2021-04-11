@@ -9,7 +9,7 @@ export default class Charge{
    * @param {*} line_items an array of Application instances. Usally of langth 1.
    */
   constructor(line_items){
-    this.data.line_items = line_items // array of app referaces 
+    this.data.application = line_items // array of app referaces 
     this.data.timestamp = firebase.firestore.FieldValue.serverTimestamp()
   }
 }

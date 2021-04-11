@@ -1,8 +1,9 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import { Button, Container, Typography } from '@material-ui/core';
+import { Button, Card, CardContent, CardHeader, Container, Typography } from '@material-ui/core';
 import { FirebaseContext } from '../contexts/firebase/Firebase';
+import CurrencyUtil from '../utils/CurrencyUtil';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -34,8 +35,19 @@ const useStyles = makeStyles((theme) => ({
 export default function UserProfile() {
 	const classes = useStyles();
 	const { user, signOut } = React.useContext(FirebaseContext)
+	const [charges, setCharges] = React.useState(null)
+	React.useEffect(() => {
+		const getData = async () => {
+			const data = await user.asyncGetCharges()
+			setCharges(data)
+		}
+		if (!charges) { // load get the data because we dont have it
+			getData()
+		}
+		return
+	}, [user, charges])
 
-	if(!user){
+	if (!user) {
 		return <></>
 	}
 
@@ -55,13 +67,18 @@ export default function UserProfile() {
 					</Typography>
 				</Grid>
 				<br />
-				<Grid item xs={12} className={classes.paper}>
-					<div >Other Data</div>
+				<Grid item xs={12}>
+					{!charges
+						? 'Loading'
+						: charges.map((x, i) => (<ChargeCard key={i} {...x} />))}
 				</Grid>
 			</Grid>
+			<br />
+			<br />
+			<br />
 			<Grid container>
 				<Grid item>
-					<Button onClick={() => handleSignOut(signOut)}>QUIT</Button>
+					<Button onClick={() => handleSignOut(signOut)}>Sign out</Button>
 				</Grid>
 			</Grid>
 		</Container>
@@ -69,4 +86,17 @@ export default function UserProfile() {
 }
 const handleSignOut = (signOutCallback) => {
 	signOutCallback()
+}
+
+function ChargeCard(props) {
+	return <Card>
+		<CardContent>
+			<Typography variant='h6' component='h5' gutterBottom>{props.title}</Typography>
+			<Typography variant='body1' component='p' gutterBottom>
+				Time of purchase: {props.time.toISOString().split('T')[0]}
+				<br />
+				Price: {CurrencyUtil.getSymbol(props.currency)}{CurrencyUtil.convertCentToDollar(props.price)}
+			</Typography>
+		</CardContent>
+	</Card>
 }
