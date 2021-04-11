@@ -1,4 +1,4 @@
-import { useStripe, CardElement, Elements, useElements } from '@stripe/react-stripe-js';
+import { CardElement, Elements /*useStripe, useElements,*/} from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import React from 'react'
 

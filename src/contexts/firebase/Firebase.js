@@ -5,65 +5,91 @@ import User from '../../private/data/User'
 export const FirebaseContext = React.createContext()
 
 export default class Firebase extends React.Component {
-    constructor(props) {
-        super(props)
-        this.firebase = this.props.firebase
-        this.db = this.firebase.firestore()
-        this.actions = {
-            googleAuth: this.googleAuth
-        }
-        this.state = {
-            apps: null, // arr of apps for sell
-            component_mounted: false,
-        }
+	constructor(props) {
+		super(props)
+		this.firebase = this.props.firebase
+		this.db = this.firebase.firestore()
+		this.auth = this.firebase.auth()
+		this.user = null // no user info yet
+		this.actions = {
+			googleAuth: this.googleAuth,
+			setApplications: this.setApplications,
+			setFirebaseCtxState: this.setState,
+			signOut:this.signOut
+		}
+		this.state = {
+			apps: null, // arr of apps for sell
+			component_mounted: false,
+			mounted: false,
+		}
+		this.googleProvider = new this.firebase.auth.GoogleAuthProvider();
+		// TODO: set up firebase auth UI
+		// this.ui = new firebaseui.auth.AuthUI(firebase.auth())
 
-        this.googleProvider = new this.firebase.auth.GoogleAuthProvider();
-        // TODO: set up firebase auth UI
-        // this.ui = new firebaseui.auth.AuthUI(firebase.auth())
+		this.applicationsCollection = new ApplicationsCollection()
+	}
+	// ------------------------------------ Firebase Methods --------------------------------------
 
-        this.applicationsCollection = new ApplicationsCollection()
-    }
-    // ------------------------------------ Firebase Methods --------------------------------------
+	// auth
+	googleAuth = async () => {
+		console.log('starting g auth')
+		this.auth.signOut().then(() => {
+			this.auth.signInWithPopup(this.googleProvider)
+				.then(async result => {
+					/** @type {firebase.auth.OAuthCredential} */
+					// var credential = result.credential;
+					// This gives you a Google Access Token. You can use it to access the Google API.
+					// var token = credential.accessToken;
+					// The signed-in user info.
+					// var data = result.user;
+					// await User.genUserDataOrCreate(data)
+				}).catch((error) => {
+					// Handle Errors here.
+					// The email of the user's account used.
+					// The firebase.auth.AuthCredential type that was used.
+					console.error(error)
+					// User.setStatusAuthentication(false)
+				});
+		}).catch(e => console.error(e))
+	}
 
-    // auth
-    googleAuth = async () => {
-        console.log('starting g auth')
-        this.firebase.auth()
-            .signInWithPopup(this.googleProvider)
-            .then(async result => {
-                /** @type {firebase.auth.OAuthCredential} */
-                var credential = result.credential;
-                // This gives you a Google Access Token. You can use it to access the Google API.
-                var token = credential.accessToken;
-                // The signed-in user info.
-                var data = result.user;
-                console.log('user:', data, token)
-                await User.genUserDataOrCreate(data)
-                console.log(User)
-            }).catch((error) => {
-                // Handle Errors here.
-                // The email of the user's account used.
-                // The firebase.auth.AuthCredential type that was used.
-                console.error(error)
-                User.setStatusAuthentication(false)
-            });
-    }
+	signOut=()=>{
+		console.log('sign out')
+		this.auth.signOut()
+	}
 
-    // firestore
+	// firestore
 
-    // user methods
+	// user methods
 
-    // ------------------------------------- Render Method ----------------------------------------
-    componentDidCatch() { }
-    componentDidMount = async () => {
-       
-    }
-    render() {
+	// ------------------------------------- Context Buisness ------------------------------------
+	setApplications = (data) => {
+		this.setState({ apps: data })
+	}
 
-        return (
-            <FirebaseContext.Provider value={{ ...this.state, ...this.actions }}>
-                {this.props.children}
-            </FirebaseContext.Provider>)
-    }
+	// ------------------------------------- Render Method ----------------------------------------
+	componentDidCatch() { }
+	componentDidMount = async () => {
+		this.auth.onAuthStateChanged((user) => {
+			if (user) {
+				// user is signed in.
+				this.setState({ authenticated: true, user: new User(user) })
+			} else {
+				// No user is signed in.
+				this.setState({ authenticated: false, user: null })
+			}
+			this.setState({mounted: true})
+		});
+
+	}
+	render() {
+		if(!this.state.mounted){
+			return <></>
+		}
+		return (
+			<FirebaseContext.Provider value={{ ...this.state, ...this.actions }}>
+				{this.props.children}
+			</FirebaseContext.Provider>)
+	}
 
 }

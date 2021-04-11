@@ -14,7 +14,6 @@ import MailIcon from '@material-ui/icons/Mail';
 import Button from '@material-ui/core/Button';
 import FirestoreCollection from '../private/data/FirestoreCollection';
 import InitFirebase from '../InitFirebase';
-// import User from '../private/data/User';
 
 const drawerWidth = 240;
 

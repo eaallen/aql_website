@@ -1,9 +1,11 @@
-import { Container, CssBaseline, Typography, Grid, Avatar, IconButton } from '@material-ui/core'
+import { Container, CssBaseline, Grid } from '@material-ui/core'
 import React from 'react'
 import tiers from '../private/data/psudo_data/tier'
 import AuthSwitch from '../components/auth'
 import ProductCard from '../components/card/ProductCard';
 import CardActionStripe from '../components/card/CardActionStripe';
+import Window from '../components/window/Window';
+import AttachMoneySharpIcon from '@material-ui/icons/AttachMoneySharp';
 
 const tier = tiers[1]
 
@@ -18,16 +20,9 @@ export default function Pay() {
         {/* Auth area to sign up/in to pay */}
         <Grid item xs={12} md={6}><AuthSwitch /></Grid>
         <Grid item xs={12} md={6}>
-          <Container maxWidth="xs">
-            <Avatar>
-              <IconButton />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Payment
-            </Typography>
-            <br />
+          <Window maxWidth="xs" title='Payment' Icon={<AttachMoneySharpIcon fontSize='large' color='secondary'/>}>
             <ProductCard {...tier} CardAction={<CardActionStripe />} />
-          </Container>
+          </Window>
         </Grid>
       </Grid>
     </Container>

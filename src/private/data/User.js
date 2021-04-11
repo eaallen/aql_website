@@ -1,15 +1,17 @@
 import FirestoreDoc from './FirestoreDoc'
 
 class User extends FirestoreDoc {
-	data = {
-		applications: [],
-		groups: [],
+	constructor(user_data) {
+		super()
+		// if user is authenticated, we can continue set up
+		if (user_data) { 
+			this.account = user_data
+			this.data = { applications: [], groups: [] }
+			this.COLLECTION = 'users'
+
+			this._asyncUserDataOrCreate(this.account)
+		}
 	}
-	account = {}
-	status = {
-		authenticated: false
-	}
-	COLLECTION = 'users'
 
 	/**
 	 * handle sub collections 
@@ -32,18 +34,18 @@ class User extends FirestoreDoc {
 		return data
 	}
 
-	genUserDataOrCreate = async (data) => {
-		this.account = data
-		this.id = this.account.uid
-		this.status.authenticated = true
+	_asyncUserDataOrCreate = async (data) => {
 		const user_info = await this.genFromID(data.uid)
+		
+		// is the user info sotred in our db?
 		if (user_info) {
 			//set user data
 			this.data = await this._proccessUserInfo(user_info)
-		} else if (this.status.authenticated) {
+		} else if (data) {
 			// create new user doc in db
-			this.genSave(data.uid)
+			this.asyncSave(data.uid)
 		}
+		return
 	}
 
 	setStatusAuthentication = bool => {
@@ -51,7 +53,7 @@ class User extends FirestoreDoc {
 	}
 
 	// save user to firebase db
-	genSave = async id => {
+	asyncSave = async id => {
 		console.log('ID---->', id)
 		this.db.collection(this.COLLECTION).doc(id).set(this.data).then((docRef) => {
 			console.log("Document written with ID: ", docRef);
@@ -82,14 +84,13 @@ class User extends FirestoreDoc {
 	}
 
 	/**
-	 * gets the charges for a user
+	 * gets the charges for a user NOT READY FOR USE
 	 * @returns 
 	 */
 	asyncGetCharges = async () => {
 		// get charges
-		const charge_ref = await this._getChargesPath().get()
-		const charges = charge_ref.data()
-		console.log(charges)
+		// const charge_ref = await this._getChargesPath().get()
+		// const charges = charge_ref.data()
 		// for (const line of charges.line_items) {
 		//     // use promise.all here instead of awaiting every one
 		//     // charges.line_items = await line.get()
@@ -122,4 +123,4 @@ class User extends FirestoreDoc {
 }
 
 // export a user object that is used in authentication needs 
-export default new User();
+export default User;

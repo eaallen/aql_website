@@ -18,6 +18,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Footer from './components/footer/Footer';
 import * as ROUTE from './private/routes'
 import Pay from './pages/Pay';
+import { FirebaseContext } from './contexts/firebase/Firebase';
+import PrivateRoute from './components/react_router/PrivateRoute';
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   const classes = useStyles()
+  const { user } = React.useContext(FirebaseContext)
   return (
     <Router>
       <div className={classes.root}>
@@ -57,9 +60,9 @@ function App() {
             <Route path={ROUTE.ABOUT}>
               <About />
             </Route>
-            <Route path={ROUTE.USER}>
-              <UserProfile />
-            </Route>
+            <PrivateRoute path={ROUTE.USER}>
+                <UserProfile />
+            </PrivateRoute>
             <Route path={ROUTE.STORE}>
               <Store />
             </Route>
@@ -67,7 +70,7 @@ function App() {
               <Auth />
             </Route>
             <Route path={ROUTE.PAY}>
-              <Pay/>
+              <Pay />
             </Route>
             <Route path={ROUTE.TEST}>
               <ClippedDrawer />
@@ -78,7 +81,7 @@ function App() {
           </Switch>
         </main>
       </div>
-      <Footer/>
+      <Footer />
     </Router>
   );
 }

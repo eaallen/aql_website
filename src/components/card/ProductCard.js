@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardActions, CardContent, CardHeader, Typography, makeStyles } from '@material-ui/core'
+import { Card, CardContent, CardHeader, Typography, makeStyles } from '@material-ui/core'
 import StarIcon from '@material-ui/icons/StarBorder';
 import CurrencyUtil from '../../utils/CurrencyUtil';
 import CardActionView from './CardActionView';
@@ -87,6 +87,6 @@ export default function ProductCard(props) {
     {props.CardAction 
       ? props.CardAction 
       : <CardActionView href={props.href} buttonText={props.buttonText} buttonVariant={props.buttonVariant} />}
-      
+
   </Card>
 }

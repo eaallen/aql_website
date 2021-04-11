@@ -21,7 +21,16 @@ if (!firebase.apps.length) {
 } else {
   firebase.app(); // if already initialized, use that one
 }
-
+// ---------------- set up listeners ----------------
+// firebase.auth().onAuthStateChanged(function(user) {
+//   if (user) {
+//     // User is signed in.
+//     console.log('user---->', user)
+//   } else {
+//     // No user is signed in.
+//     console.log('no user')
+//   }
+// });
 // var auth = firebase.auth();
 // auth.useEmulator("http://localhost:9099");
 

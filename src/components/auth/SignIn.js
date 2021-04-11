@@ -12,9 +12,10 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Oauth from './Oauth';
-import RouterLink from '../link/RouterLink';
+import RouterLink from '../react_router/RouterLink';
 import { useRouteMatch } from 'react-router-dom';
 import RouterUtil from '../../utils/RouterUtil';
+
 const useStyles = makeStyles((theme) => ({
   paper: {
     display: 'flex',

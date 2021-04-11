@@ -1,9 +1,12 @@
 import React from 'react'
-import { AppBar, Toolbar, Typography, } from '@material-ui/core';
+import { AppBar, Button, Toolbar, Typography, } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import { Link } from 'react-router-dom';
+import { FirebaseContext } from '../../contexts/firebase/Firebase';
+import RouterLink from '../react_router/RouterLink';
+import { AUTH, USER } from '../../private/routes';
+// import RouterUtil from '../../utils/RouterUtil';
 
 const useStyles = makeStyles((theme) => ({
     icon: {
@@ -14,7 +17,10 @@ const useStyles = makeStyles((theme) => ({
     },
     link: {
         textDecorationLine: 'none'
-    }
+    },
+    // title:{
+    //     flexGrow:0,
+    // }
 }))
 
 function a11yProps(index) {
@@ -25,26 +31,26 @@ function a11yProps(index) {
 }
 function LinkTab(props) {
     return (
-        <Link to={props.to}>
+        <RouterLink href={props.to}>
             <Tab
                 component="p"
                 {...props}
             />
-        </Link>
+        </RouterLink>
     );
 }
+
 export default function Header() {
-    const classes = useStyles();
-
+    const css = useStyles();
     const [value, setValue] = React.useState(0);
-
+    const { user } = React.useContext(FirebaseContext)
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-    return <AppBar position="fixed" className={classes.appBar}>
+    return <AppBar position="fixed" className={css.appBar}>
         <Toolbar>
-            <Typography variant="h6" color="inherit" noWrap>
-                TLC Tech
+            <Typography className={css.title} variant="h6" color="inherit" noWrap >
+                The Learning Company
             </Typography>
             <Tabs
                 variant="scrollable"
@@ -59,6 +65,9 @@ export default function Header() {
                 <LinkTab disableRipple label="Auth" to="/auth" {...a11yProps(4)} />
                 <LinkTab disableRipple label="Test" to="/test" {...a11yProps(5)} />
             </Tabs>
+            {user
+                ? <RouterLink href={USER}> <Button color="inherit">Profile</Button> </RouterLink>
+                : <RouterLink href={AUTH}> <Button color="inherit">Login</Button> </RouterLink>}
         </Toolbar>
     </AppBar>
 

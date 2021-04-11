@@ -1,16 +1,9 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardHeader from '@material-ui/core/CardHeader';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
-import StarIcon from '@material-ui/icons/StarBorder';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import RouterLink from '../link/RouterLink';
 import tiers from '../../private/data/psudo_data/tier';
 import ProductCard from '../card/ProductCard';
 
@@ -35,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 		margin: theme.spacing(1, 1.5),
 	},
 	heroContent: {
-		padding: theme.spacing(8, 0, 6),
+		paddingBottom: theme.spacing(6),
 	},
 	cardHeader: {
 		backgroundColor:
@@ -65,17 +58,16 @@ export default function Pricing() {
 	return (
 		<>
 			<CssBaseline />
+			
 			{/* Hero unit */}
 			<Container maxWidth="sm" component="main" className={classes.heroContent}>
-				<Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-					Pricing
-                </Typography>
 				<Typography variant="h5" align="center" color="textSecondary" component="p">
-					The Atlas Query Processor is more than "just software". We offer a wide range
-					of pricing options to meet your needs.
-                </Typography>
+					The Atlas Query Processor is more than "just software". We believe in offering the best options for you situation, 
+					as we pride ourselves on being educators.
+						</Typography>
 			</Container>
-			{/* End hero unit */}
+
+			{/* Cards */}
 			<Container maxWidth="md" component="main">
 				<Grid container spacing={5} alignItems="flex-end">
 					{tiers.map((tier) => (
