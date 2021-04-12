@@ -13,8 +13,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Oauth from './Oauth';
 import RouterLink from '../react_router/RouterLink';
-import { useRouteMatch } from 'react-router-dom';
+import { Redirect, useRouteMatch } from 'react-router-dom';
 import RouterUtil from '../../utils/RouterUtil';
+import { FirebaseContext } from '../../contexts/firebase/Firebase';
+import ErrorItem from './ErrorItem';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -38,6 +40,40 @@ const useStyles = makeStyles((theme) => ({
 export default function SignIn(props) {
   const classes = useStyles();
   const match = useRouteMatch()
+  const { signInWithEmailAndPassword } = React.useContext(FirebaseContext)
+  const [password, setPassword] = React.useState('')
+  const [email, setEmail] = React.useState('')
+  const [error, setError] = React.useState('')
+  const [redirect, setRedirect] = React.useState(null)
+  const submit = async e => {
+    e.preventDefault()
+    // validate, display the error message one at a time
+    if (email === '') {
+      setError('Your email is empty')
+    } else if (password === '') {
+      setError('Your password is empty')
+    } else {
+      // create user
+      // create user
+      const error = await signInWithEmailAndPassword(email, password)
+      console.log(error)
+      if (error) {
+        setError(error)
+      } else { 
+        // yes! we passed all of the validations
+        // reset
+        setEmail('')
+        setPassword('')
+        setError('')
+        // if props.redirect has a value route to given path
+        props.redirect_path
+          && setRedirect(<Redirect to={props.redirect_path} />)
+      }
+    }
+  }
+  if (redirect) {
+    return redirect
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -49,7 +85,7 @@ export default function SignIn(props) {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} onSubmit={submit}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -60,6 +96,9 @@ export default function SignIn(props) {
             name="email"
             autoComplete="email"
             autoFocus
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+
           />
           <TextField
             variant="outlined"
@@ -71,6 +110,9 @@ export default function SignIn(props) {
             type="password"
             id="password"
             autoComplete="current-password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -86,12 +128,8 @@ export default function SignIn(props) {
           >
             Sign In
           </Button>
+          <ErrorItem error={error} />
           <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
             <Grid item>
               <RouterLink styled_link route href={RouterUtil.parsePath(match.path).parent}>
                 Don't have an account? Sign Up

@@ -15,7 +15,9 @@ export default class Firebase extends React.Component {
 			googleAuth: this.googleAuth,
 			setApplications: this.setApplications,
 			setFirebaseCtxState: this.setState,
-			signOut:this.signOut
+			signOut: this.signOut,
+			createUserWithEmailAndPassword: this.createUserWithEmailAndPassword,
+			signInWithEmailAndPassword: this.signInWithEmailAndPassword
 		}
 		this.state = {
 			apps: null, // arr of apps for sell
@@ -32,7 +34,6 @@ export default class Firebase extends React.Component {
 
 	// auth
 	googleAuth = async () => {
-		console.log('starting g auth')
 		this.auth.signOut().then(() => {
 			this.auth.signInWithPopup(this.googleProvider)
 				.then(async result => {
@@ -53,7 +54,25 @@ export default class Firebase extends React.Component {
 		}).catch(e => console.error(e))
 	}
 
-	signOut=()=>{
+	// email and password
+	createUserWithEmailAndPassword = async (email, password) => {
+		try {
+			await this.auth.createUserWithEmailAndPassword(email, password)
+		} catch (error) {
+			return error.message
+		}
+	}
+	signInWithEmailAndPassword = async (email, password) => {
+		try {
+			await this.auth.signInWithEmailAndPassword(email, password)
+		} catch (error) {
+			return 'Did not authenticate'
+		}
+	}
+
+
+
+	signOut = () => {
 		console.log('sign out')
 		this.auth.signOut()
 	}
@@ -78,12 +97,12 @@ export default class Firebase extends React.Component {
 				// No user is signed in.
 				this.setState({ authenticated: false, user: null })
 			}
-			this.setState({mounted: true})
+			this.setState({ mounted: true })
 		});
 
 	}
 	render() {
-		if(!this.state.mounted){
+		if (!this.state.mounted) {
 			return <></>
 		}
 		return (

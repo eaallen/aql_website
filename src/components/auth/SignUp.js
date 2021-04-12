@@ -14,7 +14,9 @@ import Container from '@material-ui/core/Container';
 import Oauth from './Oauth';
 import RouterLink from '../react_router/RouterLink';
 import { SIGN_IN } from '../../private/routes';
-import { useRouteMatch } from 'react-router-dom';
+import { Redirect, useRouteMatch } from 'react-router-dom';
+import ErrorItem from './ErrorItem';
+import { FirebaseContext } from '../../contexts/firebase/Firebase';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -38,7 +40,44 @@ const useStyles = makeStyles((theme) => ({
 export default function SignIn(props) {
   const classes = useStyles();
   const match = useRouteMatch()
+  const { createUserWithEmailAndPassword } = React.useContext(FirebaseContext)
+  const [password, setPassword] = React.useState('')
+  const [password_confirm, setPasswordConfirm] = React.useState('')
+  const [email, setEmail] = React.useState('')
+  const [error, setError] = React.useState('')
+  const [redirect, setRedirect] = React.useState(null)
+  const submit = async e => {
+    e.preventDefault()
+    // validate, display the error message one at a time
+    if (email === '') {
+      setError('Your email is empty')
+    } else if (password !== password_confirm) {
+      setError('Your passwords do not match')
+    } else if (password === '') {
+      setError('Your password is empty')
+    } else {
+      // create user
+      const error = await createUserWithEmailAndPassword(email, password)
+      console.log(error)
+      if (error) {
+        setError(error)
+        
+      } else {
+        // reset
+        setEmail('')
+        setPassword('')
+        setPasswordConfirm('')
+        setError('')
 
+        // if props.redirect has a value route to given path
+        props.redirect_path
+          && setRedirect(<Redirect to={props.redirect_path} />)
+      }
+    }
+  }
+  if (redirect) {
+    return redirect
+  }
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -49,7 +88,7 @@ export default function SignIn(props) {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} onSubmit={submit}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -58,8 +97,11 @@ export default function SignIn(props) {
             id="email"
             label="Email Address"
             name="email"
+            type='email'
             autoComplete="email"
             autoFocus
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <TextField
             variant="outlined"
@@ -71,6 +113,8 @@ export default function SignIn(props) {
             type="password"
             id="password"
             autoComplete="current-password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <TextField
             variant="outlined"
@@ -82,6 +126,8 @@ export default function SignIn(props) {
             type="password"
             id="confirm_password"
             autoComplete="current-password"
+            value={password_confirm}
+            onChange={(e) => setPasswordConfirm(e.target.value)}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -97,6 +143,7 @@ export default function SignIn(props) {
           >
             Sign up
           </Button>
+          <ErrorItem error={error} />
           <Grid container>
             <Grid item>
               <RouterLink styled_link route href={`${match.path}${SIGN_IN}`}>
