@@ -15,6 +15,7 @@ import { SIGN_IN } from '../../private/routes';
 import { Redirect, useRouteMatch } from 'react-router-dom';
 import ErrorItem from './ErrorItem';
 import { FirebaseContext } from '../../contexts/firebase/Firebase';
+import RouterUtil from '../../utils/RouterUtil';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
