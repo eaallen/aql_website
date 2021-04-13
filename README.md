@@ -4,8 +4,10 @@ This React App is currently a prototype I have built for my IS 542 class. While 
 The purpose of this project is to demonstrate my skill with JavaScript development. While this website functions simply, the code behind it is quite extensive and will be very useful for scaling up should I choose to do so. Check out my code to see this for yourself.
 
 I hope you enjoy my project, to authenticate yourself:
+
 **email:** testuser@test.com
 **password:** testme
+
 To get started, check out the [https://heraresult.web.app/store](store) first.
 
 I used the following technologies in this project:
