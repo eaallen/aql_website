@@ -47,9 +47,9 @@ export default function Header() {
 
 	return <AppBar position="absolute" className={css.appBar}>
 		<Toolbar>
-			<IconButton onClick={() => setShow(!show)} edge="start" className={css.menuButton} color="inherit" aria-label="menu">
+			{!matches ? <IconButton onClick={() => setShow(!show)} edge="start" className={css.menuButton} color="inherit" aria-label="menu">
 				<MenuIcon />
-			</IconButton>
+			</IconButton> : <></>}
 			<Typography className={css.title} variant="h6" color="inherit" noWrap >
 				The Learning Company
       </Typography>
