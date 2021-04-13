@@ -4,7 +4,7 @@ import NavTabs from '../components/InfoArea/InfoArea'
 import Pricing from '../components/testing/Pricing'
 // import CurrencyUtil from '../utils/CurrencyUtil'
 
-const FullDescription = (props) => (<>
+const FullDescription = (props) => (
 	<Grid container>
 		<Grid item xs={12} md={8}>
 			<Typography variant="h2">
@@ -30,7 +30,7 @@ const FullDescription = (props) => (<>
 		</Grid>
 		<Grid />
 	</Grid>
-</>)
+)
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -42,9 +42,6 @@ const useStyles = makeStyles((theme) => ({
 		width: 175,
 		height: 175
 	},
-	hang_left: {
-
-	}
 }))
 
 export default function AppDetail(props) {
@@ -62,9 +59,9 @@ export default function AppDetail(props) {
 		{ label: 'Detials & Support' },
 	]
 	const panels = [
-		{ data: <FullDescription {...props} /> },
+		{ data:  <FullDescription {...props}/>},
 		{ data: <Pricing list={key_facts} /> },
-		{ data: info },
+		{ data: <Typography paragraph>{info}</Typography> },
 	]
 	return <div className={classes.root}>
 		<Container>

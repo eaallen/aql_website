@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import tiers from '../../private/data/psudo_data/tier';
 import ProductCard from '../card/ProductCard';
+import FadeInOut from '../annimation/FadeInOut';
 
 const useStyles = makeStyles((theme) => ({
 	'@global': {
@@ -57,14 +58,12 @@ export default function Pricing() {
 	const classes = useStyles();
 	return (
 		<>
-			<CssBaseline />
-			
 			{/* Hero unit */}
 			<Container maxWidth="sm" component="main" className={classes.heroContent}>
 				<Typography variant="h5" align="center" color="textSecondary" component="p">
-					The Atlas Query Processor is more than "just software". We believe in offering the best options for you situation, 
+					The Atlas Query Processor is more than "just software". We believe in offering the best options for you situation,
 					as we pride ourselves on being educators.
-						</Typography>
+				</Typography>
 			</Container>
 
 			{/* Cards */}
@@ -73,7 +72,7 @@ export default function Pricing() {
 					{tiers.map((tier) => (
 						// Enterprise card is full width at sm breakpoint
 						<Grid item key={tier.title} xs={12} md={4}>
-							<ProductCard {...tier}/>
+							<ProductCard {...tier} />
 						</Grid>
 					))}
 				</Grid>

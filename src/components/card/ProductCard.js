@@ -52,7 +52,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ProductCard(props) {
   const classes = useStyles()
-  console.log('product card', props)
   return <Card>
     <CardHeader
       title={props.title}

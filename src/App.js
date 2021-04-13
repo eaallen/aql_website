@@ -19,6 +19,8 @@ import Footer from './components/footer/Footer';
 import * as ROUTE from './private/routes'
 import Pay from './pages/Pay';
 import PrivateRoute from './components/react_router/PrivateRoute';
+import FadeInOut from './components/annimation/FadeInOut';
+import RouteWithAnimation from './components/react_router/RouteWithAnimatoin';
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,31 +53,28 @@ function App() {
         <CssBaseline />
         {/* <NavTabs/> */}
         <Header />
-        {/* <LeftDrawer classes={{ drawer: classes.drawer, drawerPaper: classes.drawerPaper }} /> */}
+        {/* render pages */}
         <main className={classes.content}>
           <Toolbar />
           <Switch>
-            <Route path={ROUTE.ABOUT}>
-              <About />
-            </Route>
             <PrivateRoute path={ROUTE.USER}>
-                <UserProfile />
+              <UserProfile />
             </PrivateRoute>
             <Route path={ROUTE.STORE}>
               <Store />
             </Route>
-            <Route path={ROUTE.AUTH}>
+            <RouteWithAnimation path={ROUTE.AUTH}>
               <Auth />
-            </Route>
-            <Route path={ROUTE.PAY}>
+            </RouteWithAnimation>
+            <RouteWithAnimation path={ROUTE.PAY}>
               <Pay />
-            </Route>
-            <Route path={ROUTE.TEST}>
+            </RouteWithAnimation>
+            <RouteWithAnimation path={ROUTE.TEST}>
               <ClippedDrawer />
-            </Route>
-            <Route path={ROUTE.HOME}>
-              <Home />
-            </Route>
+            </RouteWithAnimation>
+            <RouteWithAnimation path={ROUTE.HOME}>
+              <About />
+            </RouteWithAnimation>
           </Switch>
         </main>
       </div>

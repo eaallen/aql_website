@@ -1,109 +1,45 @@
+import { Button, Grid, Typography } from '@material-ui/core';
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import Button from '@material-ui/core/Button';
-import FirestoreCollection from '../private/data/FirestoreCollection';
-import InitFirebase from '../InitFirebase';
-
-const drawerWidth = 240;
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  drawerContainer: {
-    overflow: 'auto',
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-  },
-}));
-
+import '../App.css'
+import FadeInOut from '../components/annimation/FadeInOut';
 export default function ClippedDrawer() {
-  const classes = useStyles();
-  const testCallback = async () => {
-    console.log(await FirestoreCollection.genDataFromColelction('users', InitFirebase().firestore()))
-    
-  }
-  return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <Drawer
-        className={classes.drawer}
-        variant="permanent"
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
-        <Toolbar />
-        <div className={classes.drawerContainer}>
-          <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
-          <Divider />
-          <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
-        </div>
-      </Drawer>
-      <main className={classes.content}>
-        <Toolbar />
-        <Button onClick={testCallback}>Test ME!</Button>
-        <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
-          facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
-          gravida rutrum quisque non tellus. Convallis convallis tellus id interdum velit laoreet id
-          donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-          adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra nibh cras.
-          Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
-          imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
-          arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
-          donec massa sapien faucibus et molestie ac.
-        </Typography>
-        <Typography paragraph>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
-          facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
-          tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat
-          consequat mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus sed
-          vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in. In
-          hendrerit gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem et
-          tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique sollicitudin
-          nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra maecenas
-          accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
-      </main>
-    </div>
-  );
+  const [_in, setIn] = React.useState(true)
+  return <>
+    <FadeInOut in={_in}>
+      <div>
+        <FullDescription test='rrr'/>
+      </div>
+    </FadeInOut>
+    <Button onClick={() => setIn(!_in)}>test</Button>
+  </>
+
 }
+
+function FullDescription (props) {
+  return(
+  <Grid container>
+    <Grid item xs={12} md={8}>
+      <Typography variant="h2">
+        {props.test}
+			</Typography>
+      <Typography variant="h5" color="textSecondary" gutterBottom>
+        summary
+			</Typography>
+      <br />
+      <Typography varient='body1'>
+        This add-in allows the user to specify a query in SQL and execute it against a demonstration database,
+        provided for instructional purposes. With configuration, users can execute SQL queries against instances
+        of MS SQL Server that are accessible from the web. Users can also execute queries against public data,
+        or their personal, private data, stored in data.world. While airtable.com does not allow SQL queries, you
+        can give a table name and specify a record restriction formula to limit which records from the table are
+        returned.
+				 <br /> <br />
+				 	While this addin can be used to query the demo database with no account required, having acccount at
+				 	<a href='https://data.world'> https://data.world</a> or <a href='https://airtable.com'>https://airtable.com</a> will
+					provide additional functionality. Each of these services provide a free-tier account that will all you to get started
+					at no cost.
+			</Typography>
+    </Grid>
+    <Grid />
+  </Grid>
+)}

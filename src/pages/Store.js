@@ -20,23 +20,23 @@ export default function Store() {
 		if (!firebaseCtx.apps) { // load get the data because we dont have it
 			getData()
 		}
-		return 
+		return
 	}, [firebaseCtx])
 	if (!firebaseCtx.apps) {
 		return <></>
 	}
 	return <Container>
-		<Switch>
-			{Object.entries(firebaseCtx.apps).map(([key, value]) => (
-				<Route key={key} path={`${match.path}/${key}`}>
-					<AppDetail {...value} />
-				</Route>
-			))}
+			<Switch>
+				{Object.entries(firebaseCtx.apps).map(([key, value]) => (
+					<Route key={key} path={`${match.path}/${key}`}>
+						<AppDetail  {...value} />
+					</Route>
+				))}
 
-			{/* make the default app be our only one for now, more apps to come */}
-			<Route path={match.path}>
-				<AppDetail {...firebaseCtx.apps['IhjPUF6ibRUf71Z6yQcP']} />
-			</Route>
-		</Switch>
+				{/* make the default app be our only one for now, more apps to come */}
+				<Route path={match.path}>
+					<AppDetail {...firebaseCtx.apps['IhjPUF6ibRUf71Z6yQcP']} />
+				</Route>
+			</Switch>
 	</Container>
 }

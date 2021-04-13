@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
+import FadeInOut from '../annimation/FadeInOut';
 
 
 function a11yProps(index) {
@@ -61,6 +62,7 @@ export default function NavTabs(props) {
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
+  console.log('tabe pannle should fade',value===index)
   return (
     <div
       role="tabpanel"
@@ -71,7 +73,9 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box p={3}>
-          {children}
+          <FadeInOut in={value===index}>
+            {children}
+          </FadeInOut>
         </Box>
       )}
     </div>

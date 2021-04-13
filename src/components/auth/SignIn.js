@@ -5,7 +5,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
@@ -53,10 +52,7 @@ export default function SignIn(props) {
     } else if (password === '') {
       setError('Your password is empty')
     } else {
-      // create user
-      // create user
       const error = await signInWithEmailAndPassword(email, password)
-      console.log(error)
       if (error) {
         setError(error)
       } else { 
