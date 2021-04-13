@@ -60,6 +60,7 @@ export default function About() {
         <li>Animations</li>
         <li>Global Theme with ReactContext</li>
         <li>Any general Material UI Components used in this App</li>
+        <li>useMediaQuery</li>
       </ul>
 
       <li>React Router</li>
@@ -79,7 +80,6 @@ export default function About() {
       <ul>
         <li>Leveraged sub collections </li>
         <li>Designed data for scalability</li>
-        <li></li>
       </ul>
       <li>Firebase Hosting</li>
       <ul>

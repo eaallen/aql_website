@@ -37,7 +37,7 @@
   }
 }
 
-.default_link{
+.default_link {
   text-decoration: none;
   color: #3f51b5;
   font-size: 0.875rem;
@@ -47,28 +47,50 @@
   letter-spacing: 0.01071em;
 }
 
-.default_link:hover{
+.default_link:hover {
   text-decoration: underline;
 }
 
-.disabled-form{
-  opacity: 0.5 ;
-  color:red ;
-  margin: 500px ;
+.disabled-form {
+  opacity: 0.5;
+  color: red;
+  margin: 500px;
 }
-
 
 .fade-in-out {
   opacity: 1;
   animation: fade 2s linear;
 }
 
-
 @keyframes fade {
-0%,100% { opacity: 0 }
-50% { opacity: 1 }
+  0%, 100% {
+    opacity: 0
+  }
+  50% {
+    opacity: 1
+  }
 }
 
-.test{
-  color:'blue'
+.test {
+  color: 'blue'
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #ffea00;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #e0ce02;
 }
