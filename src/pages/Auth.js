@@ -5,6 +5,8 @@ import { STORE } from '../private/routes'
 
 export default function Auth() {
     return <Container>
+        <br/>
+        <br/>
        <AuthSwitch redirect_path={STORE}/>
     </Container>
 }

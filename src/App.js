@@ -9,7 +9,6 @@ import UserProfile from './pages/UserProfile';
 import Store from './pages/Store';
 import Auth from './pages/Auth';
 import About from './pages/About';
-import Home from './pages/Home';
 import Header from './components/header/Header';
 import ClippedDrawer from './pages/Testing'
 import { makeStyles } from '@material-ui/core/styles';
@@ -19,7 +18,6 @@ import Footer from './components/footer/Footer';
 import * as ROUTE from './private/routes'
 import Pay from './pages/Pay';
 import PrivateRoute from './components/react_router/PrivateRoute';
-import FadeInOut from './components/annimation/FadeInOut';
 import RouteWithAnimation from './components/react_router/RouteWithAnimatoin';
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({

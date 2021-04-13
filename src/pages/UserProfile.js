@@ -1,7 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import { Button, Card, CardContent, CardHeader, Container, Typography } from '@material-ui/core';
+import { Button, Card, CardContent, Container, Typography } from '@material-ui/core';
 import { FirebaseContext } from '../contexts/firebase/Firebase';
 import CurrencyUtil from '../utils/CurrencyUtil';
 

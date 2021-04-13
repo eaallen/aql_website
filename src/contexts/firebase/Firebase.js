@@ -70,6 +70,15 @@ export default class Firebase extends React.Component {
 		}
 	}
 
+	// for higher quality auth and routing expierance 
+	returnAuthResult = (email, psw_1, psw_2) =>{
+		
+		let bool = false
+		let messages = {}
+
+		return {success: bool, messages:messages}
+	}
+
 
 
 	signOut = () => {
