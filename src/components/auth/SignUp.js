@@ -56,7 +56,6 @@ export default function SignIn(props) {
     } else {
       // create user
       const error = await createUserWithEmailAndPassword(email, password)
-      console.log(error)
       if (error) {
         setError(error)
         

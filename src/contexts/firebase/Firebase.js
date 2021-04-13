@@ -82,7 +82,6 @@ export default class Firebase extends React.Component {
 
 
 	signOut = () => {
-		console.log('sign out')
 		this.auth.signOut()
 	}
 

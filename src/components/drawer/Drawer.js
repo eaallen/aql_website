@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 export default function LeftDrawer(props) {
     const classes = useStyles()
-    console.log(props)
     return <Drawer
         className={props.classes.drawer}
         variant="permanent"

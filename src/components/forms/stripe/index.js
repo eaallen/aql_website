@@ -6,7 +6,6 @@ import React from 'react'
 const stripePromise = loadStripe("pk_test_uvsUqlNRjAmg0WiBpMSZik8c00R8NDmpAS");
 
 export default function Stripe() {
-  console.log(stripePromise)
   return <>
     <Elements stripe={stripePromise}>
       <CardElement options={CARD_ELEMENT_OPTIONS} />

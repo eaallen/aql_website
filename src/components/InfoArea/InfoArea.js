@@ -62,7 +62,6 @@ export default function NavTabs(props) {
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
-  console.log('tabe pannle should fade',value===index)
   return (
     <div
       role="tabpanel"
