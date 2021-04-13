@@ -1,30 +1,22 @@
 import React from 'react'
-import { makeStyles } from "@material-ui/core";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core";
+import purple from '@material-ui/core/colors/purple';
 
 export const MaterialContext = React.createContext()
 
-const useStyles = makeStyles((theme) => ({
-    paper: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: purple[500],
     },
-    avatar: {
-      margin: theme.spacing(1),
-      backgroundColor: theme.palette.secondary.main,
+    secondary: {
+      main: '#ffea00',
     },
-    form: {
-      width: '100%', // Fix IE 11 issue.
-      marginTop: theme.spacing(1),
-    },
-    submit: {
-      margin: theme.spacing(3, 0, 2),
-    },
-  }));
+  },
+});
 
-export default function Material() {
-    const css = useStyles()
-    return <MaterialContext.Provider value={{css}}>
-        {this.props.children}
-    </MaterialContext.Provider>
+export default function Material(props) {
+    return <ThemeProvider theme={theme}>
+        {props.children}
+    </ThemeProvider>
 }

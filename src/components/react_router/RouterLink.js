@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import * as ROUTE from '../../private/routes'
 import { makeStyles } from '@material-ui/core/styles';
-
+import { Link as MuiLink }  from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
 	wide_link: {
 		color: 'inherit',
@@ -21,7 +21,7 @@ export default function RouterLink(props) {
 	// see if the props.href is a valid route
 	if (props.route || Object.values(ROUTE).find(x => props.href === x) !== undefined) {
 		if (props.styled_link) {
-			return <Link className='default_link' to={props.href}>{props.children}</Link>
+			return <Link to={props.href}><MuiLink component='span'>{props.children}</MuiLink></Link>
 		}
 
 		return <Link
@@ -30,6 +30,14 @@ export default function RouterLink(props) {
 		>
 			{props.children}
 		</Link>
+	}
+
+	if(props.styled_link){
+		return <MuiLink
+		to={props.href}
+	>
+		{props.children}
+	</MuiLink>
 	}
 	// href is not recognized so it must me external link
 	return <a

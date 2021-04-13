@@ -5,13 +5,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Firebase } from "./contexts/firebase";
 import InitFirebase from './InitFirebase';
+import { Material } from './contexts/material';
 const firebase = InitFirebase('index.js')
 
 ReactDOM.render(
   // <React.StrictMode>
+  <Material>
     <Firebase firebase={firebase}>
       <App />
-    </Firebase>,
+    </Firebase>
+  </Material>,
   // </React.StrictMode>,
   document.getElementById('root')
 );

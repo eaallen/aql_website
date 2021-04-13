@@ -41,7 +41,7 @@ export default function Header() {
 	const css = useStyles();
 	const [show, setShow] = React.useState(false)
 	const { user } = React.useContext(FirebaseContext)
-	return <AppBar position="fixed" className={css.appBar}>
+	return <AppBar position="absolute" className={css.appBar}>
 		<Toolbar>
 			<IconButton onClick={() => setShow(!show)} edge="start" className={css.menuButton} color="inherit" aria-label="menu">
 				<MenuIcon />
