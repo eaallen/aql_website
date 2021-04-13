@@ -1,4 +1,4 @@
-import { Container, CssBaseline, Grid } from '@material-ui/core'
+import { Container, CssBaseline, Grid, Typography } from '@material-ui/core'
 import React from 'react'
 import tiers from '../private/data/psudo_data/tier'
 import AuthSwitch from '../components/auth'
@@ -24,6 +24,11 @@ export default function Pay() {
         <Grid item xs={12} md={!user ? 6 : 12}>
           <Window className={'disabled-form'} maxWidth="xs" title='Payment' Icon={<AttachMoneySharpIcon fontSize='large' color='secondary' />}>
             <ProductCard {...tier} CardAction={<CardActionStripe />} />
+            <br/>
+            <Typography variant="caption" display="block" gutterBottom>
+              {user? 'C':'Authenticate then c'}lick on "pay". Then go to your profile to 
+              see the record of your charges.
+            </Typography>
           </Window>
         </Grid>
       </Grid>
