@@ -8,7 +8,15 @@ I hope you enjoy my project, to authenticate yourself:
 **email:** testuser@test.com
 **password:** testme
 
-To get started, check out the [https://heraresult.web.app/store](store) first.
+# Viewing My App
+To get started, check out the [https://heraresult.web.app/store](store) first. The Following steps will guild you through my application:
+- In the Store view, you will see a tabe that says "Pricing" click on it 
+- Click on the "Get Started" button in the second card called "The Self Learner"
+- Now in the Pay view, use the auth credentials from above to sign in (your you can sign up with a google account if you wish)
+- You will now be able to click on "Pay" in the product card. 
+- Now go to your profile (located in the top right corner)  
+- You will be able to see a list of charges, with the day it was purchased. 
+- Click on the "Sign Out". 
 
 I used the following technologies in this project:
 - JavaScript
