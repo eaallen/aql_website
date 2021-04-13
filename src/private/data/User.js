@@ -20,7 +20,6 @@ class User extends FirestoreDoc {
 	 */
 	_proccessUserInfo = async data => {
 		// handle application refs
-		console.log('user _proccessSnapshotData', data)
 		for (const app of data.applications) {
 			// use promise.all here instead of awaiting every one
 			app.application = await app.application.get()
@@ -54,9 +53,7 @@ class User extends FirestoreDoc {
 
 	// save user to firebase db
 	asyncSave = async id => {
-		console.log('ID---->', id)
 		this.db.collection(this.COLLECTION).doc(id).set(this.data).then((docRef) => {
-			console.log("Document written with ID: ", docRef);
 		}).catch((error) => {
 			console.error("Error adding document: ", error);
 		});
@@ -129,7 +126,6 @@ class User extends FirestoreDoc {
 
 	// ------------------------ Testing and Debuging -----------------------------
 	test = () => {
-		console.log(this.db)
 	}
 }
 

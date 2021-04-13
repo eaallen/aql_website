@@ -4,7 +4,6 @@ export default class RouterUtil {
       if (arr.length > 1) { return arr[arr.length - 2] }
       return arr[0]
     }
-    console.log(path)
     const arr = path.split('/').map(x => `/${x}`)
     const obj = {
       root: arr[0],

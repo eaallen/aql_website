@@ -3,7 +3,7 @@ import { AppBar, Button, Collapse, IconButton, Toolbar, Typography, } from '@mat
 import { makeStyles } from '@material-ui/core/styles';
 import { FirebaseContext } from '../../contexts/firebase/Firebase';
 import RouterLink from '../react_router/RouterLink';
-import { ABOUT, AUTH, SIGN_IN, STORE, USER } from '../../private/routes';
+import { ABOUT, SIGN_IN, STORE, USER } from '../../private/routes';
 import MenuIcon from '@material-ui/icons/Menu';
 // import RouterUtil from '../../utils/RouterUtil';
 
