@@ -1,6 +1,7 @@
 import { Container, Grid, makeStyles, Typography, } from '@material-ui/core'
 import React from 'react'
 import NavTabs from '../components/InfoArea/InfoArea'
+import RouterLink from '../components/react_router/RouterLink'
 import Pricing from '../components/testing/Pricing'
 // import CurrencyUtil from '../utils/CurrencyUtil'
 
@@ -23,7 +24,7 @@ const FullDescription = (props) => (
 				returned.
 				 <br /> <br />
 				 	While this addin can be used to query the demo database with no account required, having acccount at
-				 	<a href='https://data.world'> https://data.world</a> or <a href='https://airtable.com'>https://airtable.com</a> will
+				 	<RouterLink styled_link href='https://data.world'> https://data.world</RouterLink> or <RouterLink styled_link href='https://airtable.com'>https://airtable.com</RouterLink> will
 					provide additional functionality. Each of these services provide a free-tier account that will all you to get started
 					at no cost.
 			</Typography>

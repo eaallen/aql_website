@@ -87,10 +87,10 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #e0ce02;
+  background: #90caf9;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #e0ce02;
+  background: #4682b4;
 }

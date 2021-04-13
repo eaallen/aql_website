@@ -40,10 +40,10 @@ export default function RouterLink(props) {
 	</MuiLink>
 	}
 	// href is not recognized so it must me external link
-	return <a
+	return <MuiLink
 		className={props.fullWidth ? classes.wide_link : classes.link}
 		href={props.href}
 	>
 		{props.children}
-	</a>
+	</MuiLink>
 }

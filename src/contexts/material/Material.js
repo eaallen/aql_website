@@ -1,16 +1,15 @@
 import React from 'react'
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
-import purple from '@material-ui/core/colors/purple';
 
 export const MaterialContext = React.createContext()
 
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: purple[500],
+      main: '#4682b4',
     },
     secondary: {
-      main: '#ffea00',
+      main: '#90caf9',
     },
   },
 });
