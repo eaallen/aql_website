@@ -18,6 +18,7 @@ To get started, check out the [https://heraresult.web.app/store](store) first. T
 - You will be able to see a list of charges, with the day it was purchased. 
 - Click on the "Sign Out". 
 
+# Tech
 I used the following technologies in this project:
 - JavaScript
   - Leveraged OOP for data representation 
